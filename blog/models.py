@@ -1,5 +1,8 @@
 from django.db import models
-#from accounts.models import User
+
+
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 
 class Category(models.Model):
@@ -16,7 +19,7 @@ class Post(models.Model):
     '''
     this is the model for post in blog application
     '''
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(upload_to='blog', default='default.jpg')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     content = models.TextField()
